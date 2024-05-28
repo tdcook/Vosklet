@@ -8,7 +8,11 @@ let processorURL = URL.createObjectURL(new Blob(['(', (() => {
       this.buffer = new Float32Array(this.maxCount * 128)
     }
     process(inputs) {
-      this.buffer.set(inputs[0][0], this.count * 128)
+      const data = inputs[0][0]
+      if (!data) {
+        return true
+      }
+      this.buffer.set(data, this.count * 128)
       this.count++
       if(this.count >= this.maxCount) {
         this.count = 0
