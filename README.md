@@ -23,13 +23,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/gh/msqr1/Vosklet@1.2.1/Examples/Vosklet.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/tdcook/Vosklet@main/dest/Vosklet.js" async defer></script>
     <script>
       async function start() {
         // All data is collected and transfered to the main thread so the AudioContext won't output anything. Set sinkId type to none to save power
         let ctx = new AudioContext({sinkId: {type: "none"}});
 
-        // Setup microphone   
+        // Setup microphone
         let micNode = ctx.createMediaStreamSource(await navigator.mediaDevices.getUserMedia({
           video: false,
           audio: {

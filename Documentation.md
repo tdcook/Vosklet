@@ -58,20 +58,19 @@ For those who are using CSP, Vosklet's Wasm worker construction will be from a `
 
 ---
 # Compilation
-- Requires all Autotools commands in PATH, ```make```, and ```pkg-config```. For example, installing with ```apt``` would be:
 
-  ```sudo apt install autotools-dev autoconf libtool make pkg-config```
-- Changing any option to non-default values requires recompilation
-- To remake a specific target, erase its directory in the repo root and run ```./make``` again. Doing this will also remake the final JS
-```shell
-git clone --depth=1 https://github.com/msqr1/Vosklet &&
-cd Vosklet/src &&
-[Options] ./make
-# Example: INITIAL_MEMORY=350mb MAX_THREADS=3 ./make
+Use the `Containerfile` provided to build Vosklet. The container expects the
+`src` directory to be at `/var/build/src` in the container, and the final JS/WASM
+artifacts will be output to `/var/build/dest`.
+
+An example of running a build:
 ```
+$ docker build -t vosklet ./Containerfile
+$ docker run --rm -v ./src:/var/build/src -v ./dest:/var/build/dest vosklet
+```
+
+The following build-time environment variables can be passed to the container:
 | Option | Description | Default value |
 |-|-|-|
 | INITIAL_MEMORY | Set inital memory, valid suffixes: kb, mb, gb, tb or none (bytes) | ```315mb``` as [recommended](https://alphacephei.com/vosk/models) plus a bit of leeway. This memory will grow if usage exceeds this value. |
 | MAX_THREADS | Set the max number of threads (>=1), this should be equal to the number of recognizers used in the program | ```1``` |
-| JOBS | Set the number of jobs (threads) when building | ```$(nproc)```   |
-| EMSDK | Set EMSDK's path (will install EMSDK in root folder if unset) | ```../emsdk``` |

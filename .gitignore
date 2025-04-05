@@ -1,9 +1,2 @@
-vosk
-kaldi
 .vscode
 index.html
-openblas
-openfst
-emsdk
-test.js
-test.wasm
