@@ -65,7 +65,7 @@ artifacts will be output to `/var/build/dest`.
 
 An example of running a build:
 ```
-$ docker build -t vosklet ./Containerfile
+$ docker build -f Containerfile -t vosklet .
 $ docker run --rm -v ./src:/var/build/src -v ./dest:/var/build/dest vosklet
 ```
 

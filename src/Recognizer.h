@@ -1,10 +1,11 @@
 #pragma once
 #include "CommonModel.h"
+#include <queue>
 
 // Prevent naming conflicts with Vosk's Recognizer class
 #define Recognizer Recognizer_
 struct Recognizer {
-  int haveData{}; 
+  int haveData{};
   bool processCurrent{};
   bool done{};
   VoskRecognizer* rec;
